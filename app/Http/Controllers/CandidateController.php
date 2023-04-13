@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Gate;
 use App\Models\Candidate;
 use Illuminate\Http\Request;
 
@@ -20,6 +21,9 @@ class CandidateController extends Controller
      */
     public function create()
     {
+        if (!Gate::allows('isSeniorHrd')) {
+            abort(403, 'Anda tidak memiliki hak akses ');
+        }
         return view('candidates.create');
     }
 
@@ -28,18 +32,9 @@ class CandidateController extends Controller
      */
     public function store(Request $request)
     {
-        // $this->validate($request, [
-        //     'name' => ['required'],
-        //     'education' => ['required'],
-        //     'birthday' => ['required|date'],
-        //     'experience' => ['required|numeric'],
-        //     'last_position' => ['required'],
-        //     'applied_position' => ['required'],
-        //     'top_5_skills' => ['required'],
-        //     'email' => ['required|email'],
-        //     'phone' => ['required'],
-        //     // 'resume' => ['required|mimes:pdf']
-        // ]);
+        if (!Gate::allows('isSeniorHrd')) {
+            abort(403, 'Anda tidak memiliki hak akses ');
+        }
         $candidate = new Candidate();
 
         $candidate->name = $request->name;
@@ -70,6 +65,9 @@ class CandidateController extends Controller
      */
     public function edit(Candidate $candidate)
     {
+        if (!Gate::allows('isSeniorHrd')) {
+            abort(403, 'Anda tidak memiliki hak akses ');
+        }
         $data = Candidate::findOrFail($candidate->id);
         return view('candidates.edit')->with([
             'data' => $data
@@ -83,6 +81,9 @@ class CandidateController extends Controller
      */
     public function update(Request $request, Candidate $candidate)
     {
+        if (!Gate::allows('isSeniorHrd')) {
+            abort(403, 'Anda tidak memiliki hak akses ');
+        }
         $data = Candidate::findOrFail($candidate->id);
         $data->name = $request->name;
         $data->education = $request->education;
@@ -104,6 +105,9 @@ class CandidateController extends Controller
      */
     public function destroy(Candidate $candidate, Request $request)
     {
+        if (!Gate::allows('isSeniorHrd')) {
+            abort(403, 'Anda tidak memiliki hak akses ');
+        }
         $data = Candidate::findOrFail($candidate->id);
         $data->delete();
 
