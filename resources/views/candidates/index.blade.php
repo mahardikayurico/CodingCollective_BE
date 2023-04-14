@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -8,16 +8,23 @@
     <title></title>
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
+<!-- <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+     -->
 
 
-    <!-- Styles -->
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
+<!-- Styles -->
+<!-- <script src="https://cdn.tailwindcss.com"></script>
+</head> -->
 
-<body class="antialiased">
+<!-- <body class="antialiased"> -->
+
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Candidate Lists') }}
+        </h2>
+    </x-slot>
     <main class="content">
         <div class="relative overflow-x-auto mt-4">
             <table class="w-full text-sm text-left text-gray-500 font-family-quicksand dark:text-gray-400">
@@ -120,6 +127,9 @@
 
     </main>
 
+</x-app-layout>
+
+<!--
 </body>
 
-</html>
+</html> -->
